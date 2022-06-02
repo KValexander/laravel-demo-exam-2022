@@ -57,6 +57,8 @@ Route::group(["middleware" => "session"], function() {
             Route::post("/product_add", [AdminController::class, "product_add"])->name("product_add");
             // Удаление товара
             Route::get("/product/{id}/delete", [AdminController::class, "product_delete"])->name("product_delete");
+            // Страница обновления товара
+            Route::get("/product/{id}/update", [AdminController::class, "product_update_page"])->name("product_update_page");
             // Обновление товара
             Route::post("/product/{id}/update", [AdminController::class, "product_update"])->name("product_update");
 

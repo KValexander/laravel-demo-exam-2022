@@ -4,26 +4,12 @@
 
 	<div class="head">Новинки компании</div>
 	<div class="row main">
-		<div class="col">
-			<img src="{{ asset('public/logo/logo.png') }}" alt="">
-			<h3>Название</h3>
-		</div>
-		<div class="col">
-			<img src="{{ asset('public/logo/logo.png') }}" alt="">
-			<h3>Название</h3>
-		</div>
-		<div class="col">
-			<img src="{{ asset('public/logo/logo.png') }}" alt="">
-			<h3>Название</h3>
-		</div>
-		<div class="col">
-			<img src="{{ asset('public/logo/logo.png') }}" alt="">
-			<h3>Название</h3>
-		</div>
-		<div class="col">
-			<img src="{{ asset('public/logo/logo.png') }}" alt="">
-			<h3>Название</h3>
-		</div>
+		@foreach($products as $val)
+			<div class="col">
+				<img src="{{ asset('public/'. $val->path) }}" alt="">
+				<h3><a href="{{ route('product_page', ['id' => $val->product_id]) }}">{{ $val->name }}</a></h3>
+			</div>
+		@endforeach
 	</div>
 
 	<div class="head" id="register">Регистрация</div>

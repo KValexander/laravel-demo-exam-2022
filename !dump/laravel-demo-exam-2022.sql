@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 01 2022 г., 17:56
+-- Время создания: Июн 02 2022 г., 15:52
 -- Версия сервера: 10.3.29-MariaDB
 -- Версия PHP: 7.4.21
 
@@ -55,12 +55,19 @@ CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `count` int(11) NOT NULL,
   `reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `product_id`, `status`, `count`, `reason`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, 1, NULL, '2022-06-02 09:32:39', '2022-06-02 09:32:39');
 
 -- --------------------------------------------------------
 
@@ -82,6 +89,23 @@ CREATE TABLE `products` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `products`
+--
+
+INSERT INTO `products` (`product_id`, `name`, `price`, `country`, `year`, `model`, `category`, `count`, `path`, `created_at`, `updated_at`) VALUES
+(1, 'Принтер', 100, 'Россия', 2022, 'Модель', 'Лазерный принтер', 4, 'logo/logo.png', '2022-06-02 11:17:17', '2022-06-02 09:32:39'),
+(2, 'Обычный Принтер', 100, 'Россия', 2022, 'Модель', 'Лазерный принтер', 5, 'logo/logo.png', '2022-06-02 11:20:23', '2022-06-02 11:20:23'),
+(3, 'Чуть Принтер', 200, 'Япония', 2021, 'Модель', 'Струйный принтер', 15, 'logo/logo.png', '2022-06-02 11:20:23', '2022-06-02 11:20:24'),
+(4, 'Ничуть Принтер', 300, 'Германия', 2020, 'Модель', 'Термопринтер', 25, 'logo/logo.png', '2022-06-02 11:20:23', '2022-06-02 11:20:25'),
+(5, 'Приставка Принтер', 400, 'Россия', 2022, 'Модель', 'Струйный принтер', 35, 'logo/logo.png', '2022-06-02 11:20:23', '2022-06-02 11:20:26'),
+(6, 'Пол Принтер', 500, 'Япония', 2021, 'Модель', 'Термопринтер', 45, 'logo/logo.png', '2022-06-02 11:20:23', '2022-06-02 11:20:27'),
+(7, 'Умный Принтер', 600, 'Германия', 2020, 'Модель', 'Лазерный принтер', 55, 'logo/logo.png', '2022-06-02 11:20:23', '2022-06-02 11:20:28'),
+(8, 'Уникальный Принтер', 700, 'Япония', 2021, 'Модель', 'Струйный принтер', 65, 'logo/logo.png', '2022-06-02 11:20:23', '2022-06-02 11:20:29'),
+(9, 'Много стоит Принтер', 800, 'Германия', 2020, 'Модель', 'Термопринтер', 75, 'logo/logo.png', '2022-06-02 11:20:23', '2022-06-02 11:20:30'),
+(10, 'Он самый принтер', 900, 'Япония', 2022, 'Модель', 'Струйный принтер', 85, 'logo/logo.png', '2022-06-02 11:20:23', '2022-06-02 11:20:31'),
+(11, 'Просто Принтер', 1000, 'Германия', 2021, 'Модель', 'Термопринтер', 95, 'logo/logo.png', '2022-06-02 11:20:23', '2022-06-02 11:20:32');
 
 -- --------------------------------------------------------
 
@@ -109,7 +133,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `surname`, `patronymic`, `login`, `email`, `password`, `remember_token`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'Администратор', 'А', NULL, 'admin', '1@1', '$2y$10$RYA5cjhnSF/ouzA6uSWPf.LYaHjxI1Ft2k.N55FiREHMduza6sCkm', '2jQcxCcqy9RRSgmN83m04A2PXpxMz8p3jyxdcUDcQ2FewuewbhWb1EWM5zsp', 'admin', '2022-06-01 11:47:01', '2022-06-01 14:56:12');
+(1, 'Администратор', 'А', NULL, 'admin', '1@1', '$2y$10$RYA5cjhnSF/ouzA6uSWPf.LYaHjxI1Ft2k.N55FiREHMduza6sCkm', 'YFk0SndX9syQRZlmihaaFYAo7p8qNjsT2u8qfbRJYmQ9mxax6M5W7AP7AEdH', 'admin', '2022-06-01 11:47:01', '2022-06-02 11:10:49');
 
 --
 -- Индексы сохранённых таблиц
@@ -153,13 +177,13 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
