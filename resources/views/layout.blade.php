@@ -15,7 +15,7 @@
 				<img src="{{ asset('public/logo/logo.png') }}" alt="">
 				<h1><a href="{{ route('main_page') }}">Copy Star!</a></h1>
 			</div>
-			<h2>Лучшие уже более 10 лет!</h2>
+			<h2>Величайшие уже более 10 лет!</h2>
 		</div>
 
 		<div class="content">

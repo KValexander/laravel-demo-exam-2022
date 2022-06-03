@@ -38,6 +38,9 @@ Route::group(["middleware" => "session"], function() {
 
         // Оформить заказ
         Route::post("/user/checkout", [UserController::class, "checkout"])->name("checkout");
+        
+        // Удалить новый заказ
+        Route::get("/user/order/{id}/delete", [UserController::class, "order_delete"])->name("order_delete");
 
         // Выход из авторизации
         Route::get("/logout", [AuthController::class, "logout"])->name("logout");

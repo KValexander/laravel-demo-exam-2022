@@ -60,7 +60,7 @@ div.message {
 }
 
 .small {
-	font-size: 11pt;
+	font-size: 12pt;
 	color: gray;
 }
 
@@ -79,9 +79,9 @@ div.head {
 }
 
 .row {
-	margin: 10px 0;
 	display:  flex;
 	flex-wrap: wrap;
+	align-items: start;
 	justify-content: space-between;
 }
 
@@ -134,13 +134,17 @@ form {
 	width: 70%;
 }
 
+form.w100 {
+	width: 100%;
+}
+
 form div.part {
 	display: flex;
 	align-items: center;
 	text-align: left;
 }
 
-form div.part input {
+form div.part * {
 	width: 50%;
 }
 form div.part > *:first-child {
@@ -167,6 +171,11 @@ button {
 	color: white;
 	padding: 0;
 	background-color: black;
+}
+
+textarea {
+	padding: 5px;
+	min-height: 80px;
 }
 
 header {
