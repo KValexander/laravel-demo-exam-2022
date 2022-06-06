@@ -27,14 +27,11 @@
 				@if($role == "guest")
 					<p><a href="{{ route('main_page') }}#register">Регистрация</a></p>
 					<p><a href="{{ route('main_page') }}#login">Войти</a></p>
-				@endif
-
-				@if($role == "admin")
-					<p><a href="{{ route('admin_page') }}">Заказы</a></p>
-				@endif
-
-				@if($role == "user" || $role == "admin")
+				@else
 					<p><a href="{{ route('cart_page') }}">Корзина</a></p>
+					@if($role == "admin")
+						<p><a href="{{ route('admin_page') }}">Заказы</a></p>
+					@endif
 					<p><a href="{{ route('logout') }}">Выход</a></p>
 				@endif
 

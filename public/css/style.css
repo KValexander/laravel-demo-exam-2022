@@ -166,6 +166,12 @@ input[type=checkbox] {
 	height: 20px;
 }
 
+input[type=file] {
+	height: 30px;
+	border: none;
+	padding: 0;
+}
+
 button {
 	cursor: pointer;
 	color: white;

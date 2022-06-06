@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 
 use App\Models\CategoryModel;
@@ -17,10 +18,12 @@ class AdminController extends Controller
         return view("admin", ["orders" => $orders, "categories" => $categories]);
     }
 
-    // Страница обновления продукта
+    // Страница обновления товара
     public function product_update_page($id) {
-        $product = ProductModel::find($id);
-        return view("product_update", ["product" => $product]);
+        return view("product_update", [
+            "product" => ProductModel::find($id),
+            "categories" => CategoryModel::all()
+        ]);
     }
 
     // Добавление категориия
@@ -53,6 +56,65 @@ class AdminController extends Controller
         $order->reason = $request->input("reason");
         $order->save();
         return redirect()->route("admin_page")->withErrors("Заказ отменён", "message");
+    }
+
+    // Добавление товара
+    public function product_add(Request $request) {
+        $validator = Validator::make($request->all(), [
+            "image" => "required|image|max:2048"
+        ]);
+        if($validator->fails())
+            return redirect()->route("admin_page")->withErrors("Файл должен быть изображением и не должен весить более 2мб", "message");
+
+        $product = new ProductModel;
+        $product->name = $request->input("name");
+        $product->price = $request->input("price");
+        $product->country = $request->input("country");
+        $product->year = $request->input("year");
+        $product->model = $request->input("model");
+        $product->category = $request->input("category");
+        $product->count = $request->input("count");
+
+        $image_name = time() ."_". rand() .".". $request->file("image")->extension();
+        $request->file("image")->move(public_path("images/upload/"), $image_name);
+        $product->path = "images/upload/". $image_name;
+
+        $product->save();
+
+        return redirect()->route("admin_page")->withErrors("Товар добавлен", "message");
+    }
+
+    // Удаление товара
+    public function product_delete($id) {
+        $product = ProductModel::find($id);
+        unlink(public_path($product->path));
+        $product->delete();
+        return redirect()->route("admin_page")->withErrors("Товар удалён", "message");
+    }
+
+    // Обновление товара
+    public function product_update(Request $request) {
+        $id = $request->route("id");
+
+        $product = ProductModel::find($id);
+        $product->name = $request->input("name");
+        $product->price = $request->input("price");
+        $product->country = $request->input("country");
+        $product->year = $request->input("year");
+        $product->model = $request->input("model");
+        $product->category = $request->input("category");
+        $product->count = $request->input("count");
+
+        if($request->has("image")) {
+            unlink(public_path($product->path));
+            $image_name = time() ."_". rand() .".". $request->file("image")->extension();
+            $request->file("image")->move(public_path("images/upload/"), $image_name);
+            $product->path = "images/upload/". $image_name;
+        }
+
+        $product->save();
+
+        return redirect()->route("product_page", ["id" => $id])->withErrors("Товар обновлён", "message");
     }
 
 }
