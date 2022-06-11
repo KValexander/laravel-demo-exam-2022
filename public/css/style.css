@@ -15,13 +15,13 @@ body {
 	background-color: #f3f3f3;
 }
 
-a {
+a, span {
 	color: black;
 	cursor: pointer;
 	text-decoration: none;
 }
 
-a:hover {
+a:hover, span:hover {
 	text-decoration: underline;
 }
 
@@ -45,6 +45,10 @@ div.message {
 	font-size: 20pt;
 	text-align: center;
 
+}
+
+.none {
+	display: none;
 }
 
 .text-center {
@@ -81,7 +85,6 @@ div.head {
 .row {
 	display:  flex;
 	flex-wrap: wrap;
-	align-items: start;
 	justify-content: space-between;
 }
 
@@ -95,18 +98,30 @@ div.head {
 	box-shadow: 0 0 3px rgba(0,0,0,0.5);
 }
 
-.row.main .col {
-	width: 19%;
-}
-
-.row.main .col img {
-	height: 150px;
-}
-
 .row .col img {
 	width: 100%;
 	height: 250px;
 	margin-bottom: 10px;
+}
+
+.row.slider {
+	overflow: hidden;
+	flex-wrap: nowrap !important;
+}
+
+.row .slides {
+	position: relative;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	transition: .4s;
+	top: 0;
+	left: 0;
+}
+
+.row .slides .col {
+	flex-shrink: 0;
+	margin-right: 20px;
 }
 
 div.wrap {
@@ -204,6 +219,7 @@ header div.logo div:first-child {
 
 header img {
 	margin-right: 10px;
+	width: 70px;
 }
 
 header nav {

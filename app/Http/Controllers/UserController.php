@@ -22,7 +22,7 @@ class UserController extends Controller
         $orders = $model->where([
             ["product_id", "=", 0],
             ["user_id", "=", Auth::id()]
-        ])->get();
+        ])->orderby("created_at", "DESC")->get();
         return view("cart", [
             "products" => $products,
             "orders" => $orders

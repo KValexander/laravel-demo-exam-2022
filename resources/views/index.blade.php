@@ -1,15 +1,21 @@
 @extends("layout")
 
+@section("script")
+	<script>window.onload = () => slide(0);</script>
+@endsection
+
 @section("content")
 
 	<div class="head">Новинки компании</div>
-	<div class="row main">
-		@foreach($products as $val)
-			<div class="col">
-				<img src="{{ asset('public/'. $val->path) }}" alt="">
-				<h3><a href="{{ route('product_page', ['id' => $val->product_id]) }}">{{ $val->name }}</a></h3>
-			</div>
-		@endforeach
+	<div class="row slider">
+		<div class="slides">
+			@foreach($products as $val)
+				<div class="col">
+					<img src="{{ asset('public/'. $val->path) }}" alt="">
+					<h3><a href="{{ route('product_page', ['id' => $val->product_id]) }}">{{ $val->name }}</a></h3>
+				</div>
+			@endforeach
+		</div>
 	</div>
 
 	<div class="head" id="register">Регистрация</div>

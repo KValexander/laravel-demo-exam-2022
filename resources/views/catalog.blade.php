@@ -4,13 +4,19 @@
 
 	<div class="head">Наши товары</div>
 
-	<div class="row">
+	<p>
+		<span onclick="sorting('catalog', 'year')">Год производства</span> |
+		<span onclick="sorting('catalog', 'name')">Наименование</span> |
+		<span onclick="sorting('catalog', 'price')">Цена</span>
+	</p>
+	<div class="row" id="catalog">
 		@foreach($products as $val)
 			<div class="col">
 				<img src="{{ asset('public/'. $val->path) }}" alt="">
 				<div class="row">
-					<h3><a href="{{ route('product_page', ['id' => $val->product_id]) }}">{{ $val->name }}</a></h3>
-					<h4>{{ $val->price }}$</h4>
+					<h3><a href="{{ route('product_page', ['id' => $val->product_id]) }}" id="name">{{ $val->name }}</a></h3>
+					<h4 id="price">{{ $val->price }}$</h4>
+					<p class="none" id="year">{{ $val->year }}</p>
 				</div>
 				@if($role == "admin")
 					<div class="row">
