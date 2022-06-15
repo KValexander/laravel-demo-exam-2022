@@ -4,11 +4,22 @@
 
 	<div class="head">Наши товары</div>
 
-	<p>
-		<span onclick="sorting('catalog', 'year')">Год производства</span> |
-		<span onclick="sorting('catalog', 'name')">Наименование</span> |
-		<span onclick="sorting('catalog', 'price')">Цена</span>
-	</p>
+	<div class="row">
+		<p>
+			<span onclick="sorting('catalog', 'year')">Год производства</span> |
+			<span onclick="sorting('catalog', 'name')">Наименование</span> |
+			<span onclick="sorting('catalog', 'price')">Цена</span>
+		</p>
+		<p>
+			<select onchange="filtration('catalog', 'category', this.value)">
+				<option value="" disabled selected>Категории</option>
+				@foreach($categories as $val)
+					<option value="{{ $val->category }}">{{ $val->category }}</option>
+				@endforeach
+			</select>
+		</p>
+	</div>
+
 	<div class="row" id="catalog">
 		@foreach($products as $val)
 			<div class="col">
@@ -17,6 +28,7 @@
 					<h3><a href="{{ route('product_page', ['id' => $val->product_id]) }}" id="name">{{ $val->name }}</a></h3>
 					<h4 id="price">{{ $val->price }}$</h4>
 					<p class="none" id="year">{{ $val->year }}</p>
+					<p class="none" id="category">{{ $val->category }}</p>
 				</div>
 				@if($role == "admin")
 					<div class="row">

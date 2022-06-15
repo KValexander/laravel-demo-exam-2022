@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class AdminController extends Controller
 {
     // Страница администратора
     public function admin_page() {
-        $orders = OrderModel::where("product_id", 0)->get();
+        $orders = DB::table("orders")->join("users", "orders.user_id", "=", "users.id")->where("orders.product_id", 0)->get();
         $categories = CategoryModel::all();
         return view("admin", ["orders" => $orders, "categories" => $categories]);
     }

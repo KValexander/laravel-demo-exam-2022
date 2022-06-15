@@ -54,13 +54,22 @@
 	</form>
 
 	<div class="head">Заказы</div>
-	<div class="row">
+
+	<p>
+		<span onclick="filtration('orders', 'all')">Все</span> |
+		<span onclick="filtration('orders', 'status', 'Новый')">Новые</span> |
+		<span onclick="filtration('orders', 'status', 'Подтверждённый')">Подтверждённые</span> |
+		<span onclick="filtration('orders', 'status', 'Отменённый')">Отменённые</span>
+	</p>
+
+	<div class="row" id="orders">
 		@if(count($orders))
 			@foreach($orders as $val)
 				<div class="col">
 					<h3 class="text-left">Заказ {{ $val->order_id }}</h3>
+					<p class="text-left">ФИО: <b>{{ $val->name }} {{ $val->surname }} {{ $val->patronymic }}</b></p>
 					<p class="text-left">Количество товаров: <b>{{ $val->amount }}</b></p>
-					<p class="text-left">Статус: <b>{{ $val->status }}</b></p>
+					<p class="text-left">Статус: <b id="status">{{ $val->status }}</b></p>
 					@if($val->status == "Отменённый")
 						<p><b>Причина отмены</b></p>
 						<p class="text-left">{{ $val->reason }}</p>
@@ -77,6 +86,7 @@
 							<button name="order_id" value="{{ $val->order_id }}">Отменить</button>
 						</form>
 					@endif
+					<p class="small text-right">{{ $val->created_at }}</p>
 				</div>
 			@endforeach
 		@else

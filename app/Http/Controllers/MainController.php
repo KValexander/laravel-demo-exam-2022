@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\ProductModel;
+use App\Models\CategoryModel;
 
 class MainController extends Controller
 {
@@ -23,7 +24,8 @@ class MainController extends Controller
     // Страница Каталог
     public function catalog_page() {
         $products = ProductModel::where("count", ">", 0)->get();
-        return view("catalog", ["products" => $products]);
+        $categories = CategoryModel::all();
+        return view("catalog", ["products" => $products, "categories" => $categories]);
     }
 
     // Страница товара
