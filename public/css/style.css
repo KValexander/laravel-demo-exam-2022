@@ -1,0 +1,213 @@
+* {
+	margin:  0;
+	padding:  0;
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 14pt;
+	font-family: Arial;
+	background-color: #f3f3f3;
+}
+
+.none {
+	display: none;
+}
+
+a, span {
+	color: black;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a:hover, span:hover {
+	text-decoration: underline;
+}
+
+p, h3, h4 {
+	padding: 5px 0;
+}
+
+img {
+	object-fit: cover;
+	max-width: 100%;
+}
+
+.text-left {text-align: left !important;}
+.text-center {text-align: center !important;}
+.text-right {text-align: right !important;}
+.small {
+	font-size: 12pt;
+	color: gray;
+}
+
+div.content {
+	padding: 0 20px;
+	margin: 0 auto;
+	max-width: 1200px;
+}
+
+div.head {
+	text-align: center;
+	font-size: 20pt;
+	border-bottom: solid 2px black;
+	padding: 20px 0;
+	margin: 40px 0 20px 0;
+}
+
+div.row {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+div.wrap {
+	width: 48%;
+	padding: 20px;
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+div.wrap img {
+	width: 100%;
+	max-height: 250px;
+}
+
+div.row.slider {
+	overflow: hidden;
+}
+
+div.col {
+	width: 32%;
+	padding: 20px;
+	margin: 10px 0;
+	background-color: white;
+	text-align: center;
+	border-radius: 5px;
+	box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+div.col img {
+	width: 100%;
+	height: 250px;
+	margin-bottom: 10px;
+}
+
+div.slides {
+	width: 100%;
+	display: flex;
+	transition: .4s;
+	position: relative;
+	left: 0;
+	top: 0;
+	justify-content: space-between;
+}
+
+div.slides div.col {
+	flex-shrink: 0;
+	margin-right: 21px;
+}
+
+form {
+	width: 70%;
+	text-align: center;
+	margin: 0 auto;
+}
+
+form div.part {
+	display: flex;
+	align-items: center;
+}
+
+form.w100 {
+	width: 100%;
+}
+
+form div.part > * {
+	width: 50%;
+}
+form div.part > *:first-child {
+	margin-right: 10px;
+}
+
+input,button,select,textarea {
+	width: 100%;
+	font-family: Arial;
+	height: 50px;
+	font-size: 14pt;
+	border: solid 1px black;
+	padding-left: 10px;
+	margin: 10px 0;
+}
+
+input[type=checkbox] {
+	width: 20px !important;
+	height: 20px;
+}
+
+button {
+	padding:  0;
+	color:  white;
+	cursor: pointer;
+	background-color: black;
+}
+
+textarea {
+	padding: 5px;
+	min-height: 80px;
+}
+
+div.message {
+	text-align: center;
+	font-size: 20pt;
+	margin: 40px 0;
+	color: gray;
+}
+
+header {
+	background-color: white;
+	border-bottom: solid 2px black;
+}
+
+header > div:first-child {
+	padding: 40px 0;
+	border-bottom: solid 2px black;
+	text-align: center;
+}
+
+header > div:first-child > div:first-child {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 10px;
+}
+
+header img {
+	width: 50px;
+	height: 50px;
+	margin-right: 20px;
+}
+
+header nav {
+	padding: 20px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+header nav p {
+	width: 100%;
+	text-align: center;
+}
+
+main {
+	min-height: calc(100vh - (250px + 155px));
+}
+
+footer {
+	margin-top: 40px;
+	padding: 20px 0;
+	text-align: center;
+	border-top: solid 2px black;
+	background-color: white;
+}
